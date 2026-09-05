@@ -86,7 +86,7 @@ webapp/
 
 ## GitHub & video
 
-- GitHub repository link: **[ADD YOUR GITHUB REPO LINK HERE]**
-- Project proposal / workflow video (Google Vid, screen + camera): **[ADD YOUR VIDEO LINK HERE]**
+- GitHub repository link: **[git@github.com:irisisimbi/study-habit-tracker.git]**
+- Project proposal / workflow video (Google Vid, screen + camera): **[]**
 
-> Both links must also be copied into the project documentation (Word document) before submission.
+
