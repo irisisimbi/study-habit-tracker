@@ -1,0 +1,135 @@
+/* ============================================================
+   styles.css — EXTERNAL CSS (one of the three required CSS types)
+   Loaded on every page via <h:outputStylesheet library="css" name="styles.css">
+   ============================================================ */
+
+:root {
+    --primary: #2f6fed;
+    --primary-dark: #1f4fb0;
+    --accent: #34a853;
+    --danger: #e0433d;
+    --bg: #f4f6fb;
+    --text: #222831;
+    --card-bg: #ffffff;
+    --border: #dde3ee;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    font-family: 'Segoe UI', Roboto, Arial, sans-serif;
+    background-color: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 0;
+}
+
+.app-header {
+    background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+    color: #fff;
+    padding: 18px 30px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.15);
+}
+
+.app-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.app-nav {
+    background: var(--card-bg);
+    border-bottom: 1px solid var(--border);
+    padding: 10px 30px;
+}
+
+.app-nav a {
+    margin-right: 20px;
+    color: var(--primary-dark);
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.app-nav a:hover { text-decoration: underline; }
+
+.container {
+    max-width: 960px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+.card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+}
+
+table.data-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.data-table th {
+    background: var(--primary);
+    color: #fff;
+    text-align: left;
+    padding: 10px 12px;
+}
+
+table.data-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--border);
+}
+
+table.data-table tr:hover { background: #f0f4ff; }
+
+.btn {
+    display: inline-block;
+    padding: 8px 16px;
+    border-radius: 6px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 0.92rem;
+}
+
+.btn-primary { background: var(--primary); color: #fff; }
+.btn-primary:hover { background: var(--primary-dark); }
+
+.btn-danger { background: var(--danger); color: #fff; }
+.btn-danger:hover { background: #b8322d; }
+
+.btn-secondary { background: #eef1f7; color: var(--text); }
+
+.form-row { margin-bottom: 16px; }
+
+.form-row label {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 6px;
+}
+
+.form-row input, .form-row textarea, .form-row select {
+    width: 100%;
+    padding: 9px 10px;
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    font-size: 0.95rem;
+}
+
+.error-text {
+    color: var(--danger);
+    font-size: 0.85rem;
+    margin-top: 4px;
+    display: block;
+}
+
+.summary-box {
+    background: #eafbf0;
+    border: 1px solid var(--accent);
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+}

@@ -1,0 +1,80 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="title">Study Session Form - Study Habit Tracker</ui:define>
+    <ui:define name="content">
+        <div class="card">
+            <h2 class="page-title">#{studySessionBean.editMode ? 'Edit Study Session' : 'Log Study Session'}</h2>
+
+            <h:form id="sessionForm">
+                <div class="form-row">
+                    <h:outputLabel for="subject" value="Subject *"/>
+                    <h:selectOneMenu id="subject" value="#{studySessionBean.selectedSession.subject}"
+                                     converter="subjectConverter" required="true"
+                                     requiredMessage="Please choose a subject.">
+                        <f:selectItem itemLabel="-- Select a subject --" itemValue="#{null}" noSelectionOption="true"/>
+                        <f:selectItems value="#{studySessionBean.availableSubjects}" var="subj"
+                                       itemLabel="#{subj.name}" itemValue="#{subj}"/>
+                    </h:selectOneMenu>
+                    <h:message for="subject" styleClass="error-text"/>
+                </div>
+
+                <div class="form-row">
+                    <h:outputLabel for="date" value="Session Date *"/>
+                    <h:inputText id="date" value="#{studySessionBean.selectedSession.sessionDate}" required="true"
+                                 requiredMessage="Session date is required.">
+                        <f:convertDateTime type="localDate" pattern="yyyy-MM-dd"/>
+                    </h:inputText>
+                    <h:message for="date" styleClass="error-text"/>
+                </div>
+
+                <div class="form-row">
+                    <h:outputLabel for="duration" value="Duration in hours * (0.25 - 12)"/>
+                    <!-- Validation type 1: standard JSF range validator -->
+                    <!-- Validation type 2: custom JSF validator (studySessionDurationValidator) -->
+                    <!-- Validation type 3: Hibernate/JSR-303 @DecimalMin/@DecimalMax on the entity field -->
+                    <h:inputText id="duration" value="#{studySessionBean.selectedSession.durationHours}" required="true"
+                                 requiredMessage="Duration is required."
+                                 onblur="checkDuration(this)">
+                        <f:validateDoubleRange minimum="0.25" maximum="12.0"/>
+                        <f:validator validatorId="studySessionDurationValidator"/>
+                    </h:inputText>
+                    <h:message for="duration" styleClass="error-text"/>
+                    <!-- inline CSS example -->
+                    <span id="durationHint" style="font-size:0.8rem;color:#7a8391;">Client-side hint updates as you type/blur.</span>
+                </div>
+
+                <div class="form-row">
+                    <h:outputLabel for="notes" value="Notes"/>
+                    <h:inputTextarea id="notes" value="#{studySessionBean.selectedSession.notes}" style="height:70px;">
+                        <f:validateLength maximum="200"/>
+                    </h:inputTextarea>
+                </div>
+
+                <h:commandButton value="Save" action="#{studySessionBean.save}" styleClass="btn btn-primary" style="margin-right:10px;"/>
+                <h:commandButton value="Cancel" action="#{studySessionBean.cancel}" styleClass="btn btn-secondary" immediate="true"/>
+            </h:form>
+        </div>
+
+        <!-- Simple client-side (JavaScript) sanity check, complementing the server-side
+             standard / custom / bean validations declared above -->
+        <script>
+            function checkDuration(input) {
+                var hint = document.getElementById('durationHint');
+                var val = parseFloat(input.value);
+                if (isNaN(val) || val <= 0) {
+                    hint.style.color = '#e0433d';
+                    hint.innerText = 'Enter a positive number of hours.';
+                } else if (val > 8) {
+                    hint.style.color = '#e0433d';
+                    hint.innerText = 'That is a very long single session — double check it.';
+                } else {
+                    hint.style.color = '#34a853';
+                    hint.innerText = 'Looks good.';
+                }
+            }
+        </script>
+    </ui:define>
+</ui:composition>

@@ -1,0 +1,57 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://xmlns.jcp.org/jsf/html"
+                xmlns:f="http://xmlns.jcp.org/jsf/core"
+                xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="title">Study Sessions - Study Habit Tracker</ui:define>
+    <ui:define name="content">
+        <div class="card">
+            <h2 class="page-title">Progress Summary</h2>
+            <div class="summary-box">
+                <h:dataTable value="#{studySessionBean.totalHoursPerSubject}" var="row">
+                    <h:column>
+                        <f:facet name="header">Subject</f:facet>
+                        #{row[0]}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Total Hours</f:facet>
+                        #{row[1]}
+                    </h:column>
+                </h:dataTable>
+            </div>
+        </div>
+
+        <div class="card">
+            <h2 class="page-title">Study Sessions</h2>
+            <h:form id="sessionListForm">
+                <h:commandLink value="+ Log New Session" action="#{studySessionBean.prepareCreate}"
+                                styleClass="btn btn-primary" style="margin-bottom:16px; display:inline-block;"/>
+
+                <h:dataTable value="#{studySessionBean.studySessions}" var="s" styleClass="data-table">
+                    <h:column>
+                        <f:facet name="header">Date</f:facet>
+                        <h:outputText value="#{s.sessionDate}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Subject</f:facet>
+                        #{s.subject.name}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Duration (hrs)</f:facet>
+                        #{s.durationHours}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Notes</f:facet>
+                        #{s.notes}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">Actions</f:facet>
+                        <h:commandLink value="Edit" action="#{studySessionBean.prepareEdit(s)}" styleClass="btn btn-secondary" style="margin-right:6px;"/>
+                        <h:commandLink value="Delete" action="#{studySessionBean.delete(s)}" styleClass="btn btn-danger"
+                                       onclick="return confirm('Delete this study session?');"/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+        </div>
+    </ui:define>
+</ui:composition>

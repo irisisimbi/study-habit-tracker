@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+<h:head>
+    <title><ui:insert name="title">Personal Study Habit Tracker</ui:insert></title>
+
+    <!-- EXTERNAL CSS (type 1 of 3) -->
+    <h:outputStylesheet library="css" name="styles.css"/>
+
+    <!-- INTERNAL CSS (type 2 of 3): page-wide tweaks kept in the template's own <style> block -->
+    <style>
+        .app-footer {
+            text-align: center;
+            padding: 16px;
+            color: #7a8391;
+            font-size: 0.82rem;
+        }
+        .page-title {
+            margin-top: 0;
+            border-bottom: 2px solid #2f6fed;
+            padding-bottom: 8px;
+        }
+        .msg-info {
+            background: #eafbf0;
+            border: 1px solid #34a853;
+            color: #1e5e34;
+            padding: 10px 14px;
+            border-radius: 6px;
+            margin-bottom: 16px;
+        }
+    </style>
+</h:head>
+<h:body>
+    <div class="app-header">
+        <h1>📚 Personal Study Habit Tracker</h1>
+    </div>
+
+    <div class="app-nav">
+        <h:link outcome="/index" value="Home"/>
+        <h:link outcome="/subject-list" value="Subjects"/>
+        <h:link outcome="/session-list" value="Study Sessions"/>
+    </div>
+
+    <div class="container">
+        <h:messages globalOnly="false" styleClass="msg-info" layout="table"/>
+        <ui:insert name="content">Content goes here</ui:insert>
+    </div>
+
+    <!-- INLINE CSS (type 3 of 3) applied directly on this element via the style attribute -->
+    <div class="app-footer" style="border-top:1px solid #dde3ee; margin-top:20px;">
+        AUCA — Software Engineering — Student ID 27121 — Personal Study Habit Tracker (Phase 1 Practical)
+    </div>
+</h:body>
+</html>
