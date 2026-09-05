@@ -86,7 +86,8 @@ webapp/
 
 ## GitHub & video
 
-- GitHub repository link: **[git@github.com:irisisimbi/study-habit-tracker.git]**
+- GitHub repository link: **[https://github.com/irisisimbi/study-habit-tracker.git]**
 - Project proposal / workflow video (Google Vid, screen + camera): **[]**
+
 
 
